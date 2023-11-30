@@ -26,10 +26,10 @@ import routine as rou
 
 #Rutas de las carpetas necesarias para este programa
 #Ruta contenedora de este programa y archivos necesarios para las comparaciones y analisis 
-ruta_contenedora='/home/clima/automatizacion_kobo/'
+ruta_contenedora=''
 
 #Ruta de salida para todos los archivos creados durante los procesos.
-ruta_salida="/home/clima/salida_auto_kobo/"
+ruta_salida=""
 
 #Nombre de los archivos crudos que se descargan de KOBO
 name_sinop= ruta_salida +'Formulario_estaciones_sinopticas.csv'

@@ -1086,10 +1086,10 @@ def salida_base_antigua():
     tabla_final_header_estacion = df_000_data_diaria_cruda.pivot_table(values= ['VALOR'], index = ['FECHA','VARIABLE'], columns = {'CODIGO'}, aggfunc = 'first',sort=False)
     tabla_final_header_estacion.columns.set_names('', level=1, inplace=True)
     tabla_final_header_estacion.columns = tabla_final_header_estacion.columns.droplevel(0)
-    tabla_final_header_estacion.to_csv('/home/clima/salida_auto_kobo/salida_baseantigua.csv')
+    tabla_final_header_estacion.to_csv('salida_baseantigua.csv')
 
 def salida_nueva():
-    data_procesada_2 = pd.read_csv('/home/clima/automatizacion_kobo/data_diaria_salida_nueva.csv')
+    data_procesada_2 = pd.read_csv('data_diaria_salida_nueva.csv')
     #eliminaci[on de columnas inecesarias]
     data_procesada_2.drop(columns=['Fenomenos/0',
         'Fenomenos/1',

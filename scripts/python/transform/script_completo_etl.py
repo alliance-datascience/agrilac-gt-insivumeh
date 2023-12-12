@@ -13,10 +13,10 @@ from sqlalchemy import create_engine
 """
 #Rutas de las carpetas necesarias para este programa
 #Ruta contenedora de este programa y archivos necesarios para las comparaciones y analisis 
-ruta_contenedora='/home/joshc/automatizacion_kobo_v3/'
+ruta_contenedora=
 
 #Ruta de salida para todos los archivos creados durante los procesos.
-ruta_salida="/home/joshc/salida_auto_kobo_v3/"
+ruta_salida=
 
 
 #Nombre de los archivos crudos que se descargan de KOBO
@@ -35,9 +35,7 @@ des_EstacionesConvencionales=ruta_contenedora+'EstacionesConvencionales.xlsx'
 des_info_feno=ruta_salida+'info_feno.csv'
 """
 
-#Token de Autorizacion generado en KOBOTOOLBOX y es unico para cada una de las cuantes creadas en KOBOTOOLBOX
-#token="a2d815357d35aa5773ba65f1c5537b267eb1c9eb"
-token='e6f030307158e83c473c76789f11159a4c945e50'
+
 
 
 #Diccionario que remplaza todos los nombres de las estaciones por los codigos de las mismas 

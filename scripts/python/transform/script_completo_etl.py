@@ -1149,30 +1149,12 @@ def salida_nueva():
                           'PRESIÓN_ATMOSFÉRICA', 'TEMPERATURA_SUELO_50CM', 
                           'TEMPERATURA_SUELO_100CM', 'RADIACIÓN', 'ID'
     ])
-    df_filtrado_orden.to_csv('/home/clima/salida_auto_kobo/salida_interna_diaria.csv',index=False)
+    df_filtrado_orden.to_csv('salida_interna_diaria.csv',index=False)
 
 #modificacion_datos()
 #data_anulacion(name_auto,ruta_salida)
-ruta_salida="/home/clima/salida_auto_kobo/"
+ruta_salida="salida_auto_kobo/"
 name_anulacion=ruta_salida+"Formulario_anulacion_datos_climaticos.csv"
-#salida_variable_base_datos()
-#data_anulacion(name_anulacion,ruta_salida)
-#modificacion_datos()
-#des_info_feno='info_feno.csv'
-"""
-descarga_datos(ruta_salida,ruta_salida)
-salida_diaria(data_auto(name_auto,ruta_salida),data_conven(name_con,ruta_salida),data_sinop(name_sinop,ruta_salida),ruta_salida)
-anulacion_data(des_sinop,des_conven,des_auto,des_total,name_anulacion)
-viento.extraccion_viento(des_auto,des_sinop,des_conven,des_total,ruta_salida)
-correccion_fecha_lluvia(des_total)
 
-df_datatotal = pd.read_csv(ruta_salida+'df_datadiaria_formato.csv', header = 0)
-df_historico = pd.read_csv(ruta_contenedora+'MasterData Estaciones - MasterData.csv', header = 0)
 
-validacion_rangos_data_KOBO(df_datatotal,df_historico,ruta_salida)
-orden_columnas(ruta_salida,ruta_contenedora)
-"""
-#fenomeno_tratamiento('/home/joshc/automatizacion_kobo_v2/salida_fenomenos_crudo.csv','/home/joshc/automatizacion_kobo_v2/df_datadiaria_formato.csv','/home/joshc/automatizacion_kobo_v2/EstacionesConvencionales.xlsx')
-#salida_base_datos('/home/joshc/automatizacion_kobo_v2/df_datadiaria_formato.csv','/home/joshc/automatizacion_kobo_v2/EstacionesConvencionales.xlsx')
-#conexion_base_datos()
 

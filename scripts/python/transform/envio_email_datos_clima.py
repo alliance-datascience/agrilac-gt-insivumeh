@@ -12,13 +12,13 @@ d=date.now()
 FECHA = d.strftime("%Y-%m-%d %H:%M:%S")
 
 # Datos del remitente
-correo_remitente = 'hasagastume@insivumeh.gob.gt'
+correo_remitente = ''
 
 password_remitente = os.getenv("PASSWORD")
 
 # Datos del destinatario
 
-toaddrs=['insivumehconsultoriaciat@gmail.com']
+toaddrs=['']
 
 
 for i in range(len(toaddrs)):
@@ -32,17 +32,17 @@ for i in range(len(toaddrs)):
     mensaje.attach(cuerpo)
 
     # Agregar archivo CSV adjunto 1
-    #archivo_csv = MIMEApplication(open('/home/clima/automatizacion_kobo/datos-diarios_prelim_temp-celsi.csv', 'rb').read())
+    #archivo_csv = MIMEApplication(open('/datos-diarios_prelim_temp-celsi.csv', 'rb').read())
     #archivo_csv.add_header('Content-Disposition', 'attachment', filename='datos-diarios_prelim_temp-celsi.csv')
     #mensaje.attach(archivo_csv)
 
     # Agregar archivo CSV adjunto 2
-    #archivo_csv2 = MIMEApplication(open('/home/clima/automatizacion_kobo/datos-diarios_prelim__prep-milim.csv', 'rb').read())
+    #archivo_csv2 = MIMEApplication(open('datos-diarios_prelim__prep-milim.csv', 'rb').read())
     #archivo_csv2.add_header('Content-Disposition', 'attachment', filename='datos-diarios_prelim__prep-milim.csv')
     #mensaje.attach(archivo_csv2)
     
     # Agregar archivo CSV adjunto 3
-    archivo_csv3 = MIMEApplication(open('/home/clima/salida_auto_kobo/salida_interna_diaria.csv', 'rb').read())
+    archivo_csv3 = MIMEApplication(open('salida_interna_diaria.csv', 'rb').read())
     archivo_csv3.add_header('Content-Disposition', 'attachment', filename='datos_diarios_Climatologia.csv')
     mensaje.attach(archivo_csv3)
 

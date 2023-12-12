@@ -255,7 +255,7 @@ def data_sinop(name_sinop,ruta_salida):
     carga_nombre_estacion=orden_id_des(da)
     da.insert(4,'Nombre',carga_nombre_estacion)
 
-    da.loc[ da['estacion'] == 'INS050901CV'] = np.nan
+    da.loc[ da['estacion'] == ''] = np.nan
 
     name_fil = ruta_salida+'data_sinop.csv'
     da.to_csv(name_fil,index=False)
@@ -776,51 +776,7 @@ def validacion_rangos_data_KOBO(df_datatotal,df_historicos,ruta_salida):
     documento_drive.columns = documento_drive.columns.droplevel(0)
     documento_drive.to_csv(ruta_salida+'documento_drive.csv')
 
-"""
-def salida_base_datos(df_data_diaria_formato,df_EstacionesConvencionales):
 
-    df_data_diaria=pd.read_csv(df_data_diaria_formato, header=0, parse_dates = ['fecha'], dayfirst = True)
-    df_info_general=pd.read_excel(df_EstacionesConvencionales, header=0)
-
-    df_info_general.drop(columns=['No.','Estatus','Estacion','Departamento','Municipio','Nombre_estacion','Tipo','Departamento_INSIVUMEH','Sección'],inplace=True)
-
-    df_data_diaria.rename(columns = {'estacion':'ID'}, inplace = True)
-
-    #
-    df_pruebafecha_unpivot = pd.melt(df_data_diaria, id_vars = ["fecha", "ID"], value_vars = ['bri_solar',
-               'dir_viento', 'lluvia', 'tmax',
-               'eva_piche', 'nub','tmin','vel_viento',
-               'eva_tan', 'pre_atmos','tseca',
-                'hum_rel', 'rad_solar','tsuelo_100'])
-    
-    print(df_pruebafecha_unpivot.info())
-    
-    df_prueba_pivot:pd.DataFrame=df_pruebafecha_unpivot.pivot_table( index = ['fecha','ID'], columns = ['variable'], aggfunc = 'first',sort=False)['value']
-
-    df_prueba_pivot.to_csv('prueba_pivot.csv')
-    print(df_prueba_pivot.info())
-    df_prueba_pivot_2=df_prueba_pivot.reindex()
-
-    #df_data_diaria_full=df_prueba_pivot_2.merge(df_info_general, how = 'left', on = ['ID'])
-    df_data_diaria_full=pd.merge(df_prueba_pivot_2,df_info_general, how = 'outer', on = ['ID'])
-   
-    print(df_data_diaria_full.info())
-    #df_data_diaria_full_2=df_data_diaria_full.drop(columns =['No.','Estatus','Estacion','Departamento','Municipio','Nombre_estacion','Tipo','Departamento_INSIVUMEH','Sección'])
-
-    #print(df_data_diaria_full_2.info())
-    header_nuevo = df_data_diaria_full.rename(columns={"ESTA": "ESTACION", "fecha": "date","lluvia":"PREP","hum_rel":"HUMR","tmin":"TMIN","tmax":"TMAX","tseca":"TMED","rad_solar":"RADI","bri_solar":"BRIS","eva_tan":"EVAT","pre_atmos":"PRES","eva_piche":"EVAP","vel_viento":"VELV","dir_viento":"DIRV","nub":"NUBO","tsuelo_100":"TSUELO100","ID":"CODIGO","Latitud":"LAT","Longitud":"LON","Altitud":"ALT"})
-
-
-    #print(header_nuevo.info())
-    salida_final = header_nuevo.reindex(columns=['date','CODIGO','ID_INSIVUMEH','LAT',
-                                       'LON','ALT','PREP','TMED',
-                                       'TMIN','TMAX','DIRV','VELV',
-                                       'HUMR','EVAT','EVAP','BRIS',
-                                       'NUBO','PRES','TSUELO5','TSUELO50',
-                                       'TSUELO100','RADI','FENO'])
-    #print(salida_final.info())
-    salida_final.to_csv('data_diaria_full.csv',index=False)
-"""
 
 def orden_columnas(ruta_documento,ruta_contenedora):
 
@@ -859,34 +815,8 @@ def orden_columnas(ruta_documento,ruta_contenedora):
     #docdrive["Unnamed: 1"].replace({np.NAN:'VARIABLE'}, regex=True, inplace=True)
 
 
-    """docdrive['INS210601CV']=np.nan
-    docdrive['INS050901CV']=np.nan
-    docdrive['INS-010331']=np.nan
-    docdrive['INS-130527']=np.nan
-    docdrive['PLUVIOMÉT']=np.nan
-    docdrive['INS210101AT']=np.nan
-    docdrive['INS090401AT']=np.nan
-    docdrive['INS140101AT']=np.nan"""
-
-    #['INS210601CV', 'INS050901CV', 'INS210101AT', 'INS-010331', 'INS-130527', 'PLUVIOMÉT', 'INS090401AT', 'INS140101AT']    
-    """docdrive_orden = docdrive[['Unnamed: 0','Unnamed: 1','INS200501CV','INS121601CV',
-                                            'INS110701CV','INS160101CV','INS071301CV','INS200701CV',
-                                            'INS170101CV','INS010102CV','INS210601CV','INS190201CV',
-                                            'INS090301CV','INS090101CV','INS100101CV','INS221401CV',
-                                            'INS160701CV','INS180101CV','INS110101CV','INS141601CV',   
-                                            'INS120101CV','INS041001CV','INS131501CV','INS010101CV',
-                                            'INS040101CV','INS220501CV','INS-140301','INS070101CV', 
-                                            'INS130101CV','INS190901CV','INS180201CV','INS141301CV',
-                                            'INS171201CV','INS221701CV','INS050101CV','INS020302CV',
-                                            'INS150701CV','INS050901CV','INS130601CV','INS161201CV',  
-                                            'INS071901CV','INS030801CV','INS121701CV','INS141901CV',
-                                            'INS150401CV','INS020301CV','INS060101CV','INS190301CV', 
-                                            'INS210101CV','INS040301CV','INS011401AT','INS030101AT',
-                                            'INS050101AT','INS122301AT','INS210101AT','INS122101AT',
-                                            'INS-010331','INS010801AT','INS180501AT','INS180401AT',
-                                            'INS-130527','PLUVIOMÉT','INS090401AT','INS142201AT', 
-                                            'INS010301AT','INS010701AT','INS140101AT','INS040801AT','INS080101AT'   
-                                            ] ]"""
+ 
+"
     
     docdrive_orden=docdrive.reindex(columns=['Fecha','variable','CAMOTAN', 'CATARINA', 'CHAMPERICO_FEGUA', 'COBAN', 
                           'EL_CAPITAN', 'ESQUIPULAS', 'FLORES_AEROPUERTO', 

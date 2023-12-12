@@ -490,26 +490,8 @@ def correccion_fecha_lluvia(des_total,ruta_contenedora):
                'Fenomenos/8',
                'Fenomenos/9',
                'Fenomenos/10']]
-    """
-    df_valida_var_pivot.to_csv(ruta_salida+'data_total2.csv')
-    
-    now = dt.datetime.now()
-    fecha_inicio= (now - dt.timedelta(days=4)).strftime("%Y-%m-%d")
-    fecha_final = now.strftime("%Y-%m-%d")
 
-    fecha_inicio=pd.to_datetime(fecha_inicio, format="%Y-%m-%d")
-    fecha_final=pd.to_datetime(fecha_final, format="%Y-%m-%d")
 
-    dfE1=df_valida_var_pivot
-
-    filtrofecha1=dfE1['fecha'] >= fecha_inicio
-    dfE2=dfE1[filtrofecha1]
-      
-
-    filtrofecha2=dfE2['fecha'] <= fecha_final
-    dfE=dfE2[filtrofecha2]
-
-    """
 
     df_metadata=pd.read_excel(ruta_contenedora+'EstacionesConvencionales.xlsx',usecols=['ID','ID_INSIVUMEH','Latitud','Longitud','Altitud'])
     df_data=df_valida_var_pivot
@@ -975,12 +957,12 @@ def salida_base_datos(des_total,des_info_feno,ruta_salida):
 
 def modificacion_datos():
 
-    df_data_diaria_cruda = pd.read_csv('/home/clima/salida_auto_kobo/000_data_diaria_cruda.csv', header = 0,parse_dates = ['FECHA'], dayfirst = True)
+    df_data_diaria_cruda = pd.read_csv('000_data_diaria_cruda.csv', header = 0,parse_dates = ['FECHA'], dayfirst = True)
     df_data_diaria_cruda['FECHA']=df_data_diaria_cruda['FECHA'].astype('datetime64[ns]')
-    df_ids_nombres_esta = pd.read_excel('/home/clima/Desktop/NO_BORRAR/EstacionesConvencionales - copia.xlsx', header = 0)
-    df_modificacion_datos = pd.read_csv('/home/clima/Desktop/NO_BORRAR/C.C_MODIFICACIÒN_DE_DATOS.csv', header = 0,parse_dates = ['FECHA'], dayfirst = True)
+    df_ids_nombres_esta = pd.read_excel('EstacionesConvencionales - copia.xlsx', header = 0)
+    df_modificacion_datos = pd.read_csv('C.C_MODIFICACIÒN_DE_DATOS.csv', header = 0,parse_dates = ['FECHA'], dayfirst = True)
     #Data modificada historica que se actualizará
-    df_data_cruda_hist = pd.read_csv('/home/clima/Desktop/NO_BORRAR/000_datos_clima_his_sinfeno.csv', header = 0, encoding='latin1' ,parse_dates = ['FECHA'], dayfirst = True, delimiter=';')
+    df_data_cruda_hist = pd.read_csv('000_datos_clima_his_sinfeno.csv', header = 0, encoding='latin1' ,parse_dates = ['FECHA'], dayfirst = True, delimiter=';')
 
 
     #print(df_data_diaria_cruda.info())
@@ -1082,25 +1064,25 @@ def salida_variable_base_datos():
     salida_precipitacion2 = salida_precipitacion.drop(columns = ["VARIABLE"])
 
 
-    salida_temp_min2.to_csv('/home/clima/automatizacion_kobo/001_temperatura_minima_datos_clima.csv',index=False)
-    salida_hum_rel2.to_csv('/home/clima/automatizacion_kobo/001_humedad_relativa_datos_clima.csv',index=False)
-    salida_bri_solar2.to_csv('/home/clima/automatizacion_kobo/001_brillo_solar_datos_clima.csv',index=False)
-    salida_temp_max2.to_csv('/home/clima/automatizacion_kobo/001_temperatura_maxima_datos_clima.csv',index=False)
-    salida_temp_med2.to_csv('/home/clima/automatizacion_kobo/001_temperatura_media_datos_clima.csv',index=False)
-    salida_radiacion2.to_csv('/home/clima/automatizacion_kobo/001_radiacion_datos_clima_his.csv',index=False)
-    salida_eva_tan2.to_csv('/home/clima/automatizacion_kobo/001_evaporacion_tanque_datos_clima.csv',index=False)
-    salida_pre_atm2.to_csv('/home/clima/automatizacion_kobo/001_presion_atmosferica_datos_clima.csv',index=False)
-    salida_eva_pi2.to_csv('/home/clima/automatizacion_kobo/001_evaporacion_piche_datos_clima.csv',index=False)
-    salida_vel_viento2.to_csv('/home/clima/automatizacion_kobo/001_velocidad_viento_datos_clima.csv',index=False)
-    salida_dir_viento2.to_csv('/home/clima/automatizacion_kobo/001_direccion_viento_datos_clima.csv',index=False)
-    salida_nub2.to_csv('/home/clima/automatizacion_kobo/001_nubosidad_datos_clima.csv',index=False)
-    salida_tem_1002.to_csv('/home/clima/automatizacion_kobo/001_temperatura_100cm_datos_clima.csv',index=False)
-    salida_temp_502.to_csv('/home/clima/automatizacion_kobo/001_temperatura_50cm_datos_clima.csv',index=False)
-    salida_precipitacion2.to_csv('/home/clima/automatizacion_kobo/001_precipitacion_datos_clima.csv',index=False)
+    salida_temp_min2.to_csv('001_temperatura_minima_datos_clima.csv',index=False)
+    salida_hum_rel2.to_csv('001_humedad_relativa_datos_clima.csv',index=False)
+    salida_bri_solar2.to_csv('001_brillo_solar_datos_clima.csv',index=False)
+    salida_temp_max2.to_csv('001_temperatura_maxima_datos_clima.csv',index=False)
+    salida_temp_med2.to_csv('001_temperatura_media_datos_clima.csv',index=False)
+    salida_radiacion2.to_csv('001_radiacion_datos_clima_his.csv',index=False)
+    salida_eva_tan2.to_csv('001_evaporacion_tanque_datos_clima.csv',index=False)
+    salida_pre_atm2.to_csv('001_presion_atmosferica_datos_clima.csv',index=False)
+    salida_eva_pi2.to_csv('001_evaporacion_piche_datos_clima.csv',index=False)
+    salida_vel_viento2.to_csv('001_velocidad_viento_datos_clima.csv',index=False)
+    salida_dir_viento2.to_csv('001_direccion_viento_datos_clima.csv',index=False)
+    salida_nub2.to_csv('001_nubosidad_datos_clima.csv',index=False)
+    salida_tem_1002.to_csv('001_temperatura_100cm_datos_clima.csv',index=False)
+    salida_temp_502.to_csv('001_temperatura_50cm_datos_clima.csv',index=False)
+    salida_precipitacion2.to_csv('001_precipitacion_datos_clima.csv',index=False)
 
 def salida_base_antigua():
     #salida antigua
-    df_000_data_diaria_cruda = pd.read_csv('/home/clima/salida_auto_kobo/000_data_diaria_cruda.csv')
+    df_000_data_diaria_cruda = pd.read_csv('000_data_diaria_cruda.csv')
     tabla_final_header_estacion = df_000_data_diaria_cruda.pivot_table(values= ['VALOR'], index = ['FECHA','VARIABLE'], columns = {'CODIGO'}, aggfunc = 'first',sort=False)
     tabla_final_header_estacion.columns.set_names('', level=1, inplace=True)
     tabla_final_header_estacion.columns = tabla_final_header_estacion.columns.droplevel(0)

@@ -6,9 +6,9 @@ import string as str
 import numpy as np
 
 #docuemntos de Kobotoolbox
-df_auto = pd.read_csv('/home/clima/salida_auto_kobo/Formulario_estaciones_automaticas.csv', header = 0,sep=";",usecols=['start','end','estacion','Hora','_id','_submission_time','_submitted_by'],on_bad_lines='skip')
-df_conve = pd.read_csv('/home/clima/salida_auto_kobo/Formulario_estaciones_climaticas_convencionales.csv', header = 0,sep=";",usecols=['start','end','estacion','Hora','_id','_submission_time','_submitted_by'])
-df_sinop = pd.read_csv('/home/clima/salida_auto_kobo/Formulario_estaciones_sinopticas.csv', header = 0,sep=";",usecols=['start','end','estacion','Hora','_id','_submission_time','_submitted_by'],on_bad_lines='skip')
+df_auto = pd.read_csv('/Formulario_estaciones_automaticas.csv', header = 0,sep=";",usecols=['start','end','estacion','Hora','_id','_submission_time','_submitted_by'],on_bad_lines='skip')
+df_conve = pd.read_csv('/Formulario_estaciones_climaticas_convencionales.csv', header = 0,sep=";",usecols=['start','end','estacion','Hora','_id','_submission_time','_submitted_by'])
+df_sinop = pd.read_csv('/Formulario_estaciones_sinopticas.csv', header = 0,sep=";",usecols=['start','end','estacion','Hora','_id','_submission_time','_submitted_by'],on_bad_lines='skip')
 
 df_auto_drop = df_auto
 df_conve_drop = df_conve
@@ -75,36 +75,7 @@ info_total['estacion'] = info_total['estacion'].str.upper()
 
 #pasar nombre de estación al ID
 #Diccionario que remplaza todos los nombres de las estaciones por los codigos de las mismas
-ID={"RETALHULEU_AEROPUERTO":"INS110101CV","CHAMPERICO_FEGUA":"INS110701CV","COBAN":"INS160101CV","ESQUIPULAS":"INS200701CV","FLORES_AEROPUERTO":"INS170101CV",\
- "LA_AURORA":"INS010102CV","LA_FRAGUA":"INS190201CV","LOS_ALTOS":"INS090101CV","MONTUFAR":"INS221401CV",\
- "PUERTO_BARRIOS_PHC":"INS180101CV","RETALHULEU_AEROPUERTO":"INS110101CV","HUEHUETENANGO":"INS130101CV",\
- "POPTUN":"INS171201CV","SAN_JOSE_AEROPUERTO":"INS050901CV","TECUN_UMAN":"INS121701CV",\
- "RETALHULEU_AREOPUERTO":"INS110101CV","SAN_JOSE_AREOPUERTO":"INS050901CV",
- "CAMOTAN":"INS200501CV","CATARINA":"INS121601CV","EL_CAPITAN":"INS071301CV","LA_CEIBITA":"INS210601CV",\
- "LABOR_OVALLE":"INS090301CV","MAZATENANGO":"INS100101CV","PANZÓS_PHC_ALTAVERAPAZ":"INS160701CV",\
- "SACAPULAS":"INS141601CV","SAN_MARCOS_PHC":"INS120101CV","SANTA_CRUZ_BALANYA":"INS041001CV",\
- "TODOS_SANTOS":"INS131501CV","INSIVUMEH":"INS010101CV","ALAMEDA_ICTA":"INS040101CV",\
- "ASUNCION_MITA":"INS220501CV","CHINIQUE":"INS140301CV","EL_TABLON":"INS070101CV","LA_UNION":"INS190901CV",\
- "LAS_VEGAS_PHC":"INS180201CV","NEBAJ":"INS141301CV","QUEZADA":"INS221701CV","SABANA_GRANDE":"INS050101CV",\
- "SAN_AGUSTIN_ACASAGUASTLAN":"INS020302CV","SAN_JERONIMO":"INS150701CV","SAN_PEDRO_NECTA":"INS130601CV",\
- "SANTA_MARIA_CAHABON":"INS161201CV","SANTIAGO_ATITLAN":"INS071901CV","SUIZA_CONTENTA":"INS030801CV",\
- "CHIXOY_PCH":"INS141901CV","CUBULCO":"INS150401CV","LOS_ALBORES":"INS020301CV","LOS_ESCLAVOS":"INS060101CV",\
- "PASABIEN":"INS190301CV","POTRERO_CARRILLO":"INS210101CV","SAN_MARTIN_JILOTEPEQUE":"INS040301CV","PANZOS_PHC_ALTA_VERAPAZ":"INS160701CV","SAN_JERONIMO_R_H":"INS150701CV",\
- "CAMOTAN":"INS200501CV", "CAMOTAN":"INS200501CV","CATARINA":"INS121601CV","EL_CAPITAN":"INS071301CV","LA_CEIBITA":"INS210601CV",\
- "LABOR_OVALLE":"INS090301CV","MAZATENANGO":"INS100101CV","PANZÓS_PHC_ALTAVERAPAZ":"INS160701CV",\
- "SACAPULAS":"INS141601CV","SAN_MARCOS_PHC":"INS120101CV","SANTA_CRUZ_BALANYA":"INS041001CV",\
- "TODOS_SANTOS":"INS131501CV","INSIVUMEH":"INS010101CV","ALAMEDA_ICTA":"INS040101CV",\
- "ASUNCION_MITA":"INS220501CV","CHINIQUE":"INS140301CV","EL_TABLON":"INS070101CV","LA_UNION":"INS190901CV",\
- "LAS_VEGAS_PHC":"INS180201CV","NEBAJ":"INS141301CV","QUEZADA":"INS221701CV","SABANA_GRANDE":"INS050101CV",\
- "SAN_AGUSTIN_ACASAGUASTLAN":"INS020302CV","SAN_JERONIMO":"INS150701CV","SAN_PEDRO_NECTA":"INS130601CV",\
- "SANTA_MARIA_CAHABON":"INS161201CV","SANTIAGO_ATITLAN":"INS071901CV","SUIZA_CONTENTA":"INS030801CV",\
- "CHIXOY_PCH":"INS141901CV","CUBULCO":"INS150401CV","LOS_ALBORES":"INS020301CV","LOS_ESCLAVOS":"INS060101CV",\
- "PASABIEN":"INS190301CV","POTRERO_CARRILLO":"INS210101CV","SAN_MARTIN_JILOTEPEQUE":"INS040301CV","PANZOS_PHC_ALTA_VERAPAZ":"INS160701CV","SAN_JERONIMO_R_H":"INS150701CV",\
- "AMATITLAN":"INS011401AT","ANTIGUA_GUATEMALA":"INS030101AT","CONCEPCION":"INS050101AT","IXCHIGUAN":"INS122301AT","JALAPA":"INS210101AT","LA_REFORMA":"INS122101AT",\
- "LAS_NUBES":"INS010331CV","LO_DE_COY":"INS010801AT","MARISCOS":"INS180501AT","MORALES_MET":"INS180401AT","NENTON":"INS130501AT","NUEVA_CONCEPCION":"INS090901AT",\
- "PACHUTE":"INS090401AT","PLAYA_GRANDE_IXCAN":"INS142201AT","SAN_JOSE_PINULA":"INS010301AT","SAN_PEDRO_AYAMPUC":"INS010701AT","SANTA_CRUZ_DEL_QUICHE":"INS140101AT",\
- "SANTA_MARGARITA":"INS040801AT","TOTONICAPAN":"INS080101AT","CHINIQUE":"INS140301CV","SANTA_CRUZ_DEL_QUICHE":"INS140101AT","RETALHULEU_AEROPUERTO":"INS110101CV" ,\
- }
+ID={}
 
 info_total['estacion'] = info_total['estacion'].replace(ID)
 
@@ -115,4 +86,4 @@ info_total_id2 = info_total_id.drop(columns = ["end","start","_submission_time"]
 info_total_id3 = info_total_id2.rename(columns = {'estacion': 'CODIGO','end2': 'FINAL_FORMULARIO','start2':'INICIO_FORMULARIO','_submission_time2':'FORMULARIO_ENVIADO', '_submitted_by':'ENVIADO_POR'})
 
 
-info_total_id3.to_csv('/home/clima/Desktop/NO_BORRAR/rendimiento_general.csv',index=False)
+info_total_id3.to_csv('rendimiento_general.csv',index=False)
